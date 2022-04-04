@@ -10,6 +10,11 @@ function Sponge() {
 
 /**
  * Independence without React Hooks
+ * 
+ * history.pushState()
+ * window.popstate
+ * 
+ * @returns {void}
  */
-function ISWORHS() {
+function Isponge() {
 }
