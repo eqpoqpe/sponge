@@ -3,18 +3,16 @@
  */
 
 /**
- * With React Hooks
- */
-function Sponge() {
-}
-
-/**
- * Independence without React Hooks
+ * [Recommend]
  * 
- * history.pushState()
- * window.popstate
+ * Independence without React Hooks
  * 
  * @returns {void}
  */
-function Isponge() {
+function Sponge() {
+
+  // history.pushState()
+  // window.popstate
 }
+
+export { Sponge };
