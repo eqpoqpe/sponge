@@ -16,6 +16,8 @@ function useSponge(sponger) {
   // }
 }
 
+const capture = () => [window.scrollX, window.scrollY];
+
 /**
  * @param {*} defaultvalue
  * 
@@ -28,19 +30,14 @@ function createSponge(defaultvalue) {
     const { pathname } = window.location;
 
     if ($.includes(pathname))
-      $.reset(pathname, [window.scrollX, window.scrollY]);
+      $.reset(pathname, capture());
     else
-      $.push(pathname).set([window.scrollX, window.scrollY]);
+      $.push(pathname).set(capture());
 
-    console.log(JSON.stringify($.get()));
+    // console.log(JSON.stringify($.get()));
   });
 
-  // return a Sponger
-  return (props) => {
-    console.log("Sponge");
-
-    return props.children;
-  };
+  return { get: $.get, to: $.to };
 }
 
 /**
@@ -86,7 +83,16 @@ function createSl() {
      * @param {*} n
      */
     reset: (s, n) => { value[index.indexOf(s)] = n; },
-    get: () => (value)
+    get: () => (value),
+
+    /**
+     * @returns {[number, number]}
+     */
+    to: () => {
+      let { pathname } = window.location;
+
+      return (index.includes(pathname) ? value[index.indexOf(pathname)] : [0, 0]);
+    }
   }
 }
 
