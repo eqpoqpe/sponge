@@ -1,18 +1,57 @@
 /**
  * index.js - sponge
+ * 
+ * scrollX, scrollY, use React Router with Sponge
+ * 
+ * Copyright (c) 2022 Ryan Martin
  */
 
 /**
- * [Recommend]
- * 
- * Independence without React Hooks
- * 
- * @returns {void}
+ * @param {Sponger} sponger
+ * @returns {*}
  */
-function Sponge() {
+function useSponge(sponger) {
+  if (sponger) {
+    return (sponger(null, "use"));
+  }
 
-  // history.pushState()
-  // window.popstate
+  return undefined;
 }
 
-export { Sponge };
+/**
+ * @param {any} defaultvalue
+ * @returns {Sponger}
+ */
+function createSponge(defaultvalue) {
+  const o = {
+    index: [],
+    value: [],
+    has: () => { }
+  }
+
+  return (props) => {
+    window.addEventListener("scroll", () => {
+      console.log(window.location.pathname);
+
+      let { pathname } = window.location;
+
+      let capture = { pathname: [window.scrollX] };
+      Object.assign(inbuild, capture);
+    });
+
+    return props.children;
+  }
+}
+
+/**
+ * value <- index -> index
+ */
+function atoa() {
+  const o = {
+    index: [],
+    value: [],
+    has: () => {},
+  };
+}
+
+export { createSponge, useSponge };
