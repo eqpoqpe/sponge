@@ -6,9 +6,10 @@
 ```js
 const Sponger = createSponge();
 
-function App(props) {
-    // ...
-    // ...
+function App() {
+  return (
+    <></>
+  );
 }
 
 export { Sponger };
@@ -25,7 +26,9 @@ function Post() {
 
     window.scrollTo(x, y);
   }, []);
-  // ...
-  // ...
+  
+  return (
+    <></>
+  );
 }
 ```
