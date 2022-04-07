@@ -19,8 +19,6 @@ export { Sponger };
 import { Sponger } from "../../App";
 
 function Post() {
-  const { slug } = useParams();
-
   useEffect(() => {
     const [x, y] = Sponger.to();
 
