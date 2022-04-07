@@ -1,7 +1,7 @@
 # Sponge 🧽
 <p align="center"><img width="600px" src="assets/spongebob.jpg" alt="puppet core"></p>
 
-# Example
+# Example with [React](https://reactjs.org/)
 `App.js`
 ```js
 const Sponger = createSponge();
