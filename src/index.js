@@ -10,13 +10,10 @@
  * @param {Sponger} sponger
  * @returns {*}
  */
-function useSponge(sponger) {
-  // if (sponger) {
-  //   return (sponger(null, "use"));
-  // }
-}
+function useSponge(sponger) { }
 
 const capture = () => [window.scrollX, window.scrollY];
+const top = [0, 0];
 
 /**
  * @param {*} defaultvalue
@@ -29,10 +26,14 @@ function createSponge(defaultvalue) {
   window.addEventListener("scroll", () => {
     const { pathname } = window.location;
 
-    if ($.includes(pathname))
+    if ($.includes(pathname)) {
       $.reset(pathname, capture());
-    else
+    } else if (isDifference(capture(), top)) {
+      scrollTo(top);
       $.push(pathname).set(capture());
+    }
+
+    console.log(isDifference(capture(), top));
 
     // console.log(JSON.stringify($.get()));
   });
@@ -83,7 +84,7 @@ function createSl() {
      * @param {*} n
      */
     reset: (s, n) => { value[index.indexOf(s)] = n; },
-    get: () => (value),
+    get: () => ([index, value]),
 
     /**
      * @returns {[number, number]}
@@ -91,9 +92,36 @@ function createSl() {
     to: () => {
       let { pathname } = window.location;
 
-      return (index.includes(pathname) ? value[index.indexOf(pathname)] : [0, 0]);
+      return index.includes(pathname) ? value[index.indexOf(pathname)] : [0, 0];
     }
   }
+}
+
+/**
+ * 
+ * @param {number} x 
+ * @param {number} y 
+ */
+function scrollTo(x, y) {
+  window.scrollTo(x, y);
+}
+
+/**
+ * 
+ * @param {Array} st
+ *  
+ * @returns {boolean}
+ */
+function isDifference(st, dest) {
+  return (() => {
+    for (let index = 0; index < 2; index++) {
+      if (st[index] !== dest[index]) {
+        return true;
+      }
+    }
+
+    return false;
+  })();
 }
 
 export { createSponge, useSponge };

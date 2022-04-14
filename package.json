@@ -1,6 +1,6 @@
 {
   "name": "sponge",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Smart scrollTo with React Hooks",
   "module": "src/index.js",
   "scripts": {
