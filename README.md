@@ -16,13 +16,14 @@ export { Sponger };
 ```
 `component/content/index.js`
 ```js
+import { scrollTo } from "sponge";
 import { Sponger } from "../../App";
 
 function Post() {
   useEffect(() => {
     const [x, y] = Sponger.to();
 
-    window.scrollTo(x, y);
+    scrollTo(x, y);
   }, []);
   
   return (

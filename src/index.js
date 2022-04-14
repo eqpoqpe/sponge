@@ -92,7 +92,7 @@ function createSl() {
     to: () => {
       let { pathname } = window.location;
 
-      return index.includes(pathname) ? value[index.indexOf(pathname)] : [0, 0];
+      return index.includes(pathname) ? value[index.indexOf(pathname)] : top;
     }
   }
 }
@@ -124,4 +124,4 @@ function isDifference(st, dest) {
   })();
 }
 
-export { createSponge, useSponge };
+export { createSponge, useSponge, scrollTo };
