@@ -1,7 +1,9 @@
 /**
  * index.js - sponge
  * 
- * scrollX, scrollY, use React Router with Sponge
+ * scrollX, scrollY, use React Router with Sponge for SPA
+ * 
+ * !unsafe: with useEffect
  * 
  * Copyright (c) 2022 Ryan Martin
  */
@@ -32,10 +34,6 @@ function createSponge(defaultvalue) {
       scrollTo(top);
       $.push(pathname).set(capture());
     }
-
-    console.log(isDifference(capture(), top));
-
-    // console.log(JSON.stringify($.get()));
   });
 
   return { get: $.get, to: $.to };
