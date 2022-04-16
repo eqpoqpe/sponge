@@ -7,7 +7,7 @@
  */
 
 /**
- * @param {Sponger} sponger
+ * @param {*} sponger
  * @returns {*}
  */
 function useSponge(sponger) { }
@@ -18,7 +18,7 @@ const top = [0, 0];
 /**
  * @param {*} defaultvalue
  * 
- * @returns {Sponger}
+ * @returns {*}
  */
 function createSponge(defaultvalue) {
   const $ = createSl();
@@ -26,17 +26,17 @@ function createSponge(defaultvalue) {
   window.addEventListener("scroll", () => {
     const { pathname } = window.location;
 
-    if ($.includes(pathname)) {
-      $.reset(pathname, capture());
-    } else if (isDifference(capture(), top)) {
-      scrollTo(top);
-      $.push(pathname).set(capture());
-    }
-
-    console.log(isDifference(capture(), top));
-
-    // console.log(JSON.stringify($.get()));
+    // if ($.includes(pathname)) {
+    //   $.reset(pathname, capture());
+    // } else if (isDifference(capture(), top)) {
+    //   // scrollTo(top);
+    // }
+    // else {
+    //   $.push(pathname).set(capture());
+    // }
   });
+
+  window.addEventListener("popstate", ()=>{console.log("DONE")});
 
   return { get: $.get, to: $.to };
 }
@@ -91,6 +91,8 @@ function createSl() {
      */
     to: () => {
       let { pathname } = window.location;
+
+      scrollTo(0, 0);
 
       return index.includes(pathname) ? value[index.indexOf(pathname)] : top;
     }
