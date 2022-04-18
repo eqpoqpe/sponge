@@ -20,11 +20,7 @@ import { scrollTo } from "sponge";
 import { Sponger } from "../../App";
 
 function Post() {
-  useEffect(() => {
-    const [x, y] = Sponger.to();
-
-    scrollTo(x, y);
-  }, []);
+  useEffect(() => { Sponger.to(); }, []);
   
   return (
     <></>
