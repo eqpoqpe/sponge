@@ -18,20 +18,30 @@ const Capture = () => [window.scrollX, window.scrollY];
 const top = [0, 0];
 
 function createSponge() {
-  const rem_mode_env = Object.create({lock: false, unlock: true});
+  const rem_mode_env = {};
+
+  Object.defineProperties(rem_mode_env, {
+    "lock": {
+      value: false,
+      writable: false
+    },
+    "unlock": {
+      value: true,
+      writable: false
+    }
+  });
+
   const sl = createSl();
 
   const Handle = (e) => {
     if (sl.pathname !== PathName()) {
 
-      // locking
+      // set lock
       sl.set_state(rem_mode_env.lock);
     }
 
-    if (sl.state) {
-      console.log("unlock");
-    } else {
-      console.log("lock");
+    if (sl.state && sl.includes(PathName())) {
+      sl.reset(PathName(), Capture());
     }
   };
 
@@ -39,7 +49,18 @@ function createSponge() {
 
   return {
     to() {
-      scrollTo(sl.to(PathName()));
+      const pathname = PathName();
+
+      if (!sl.includes(PathName())) {
+        scrollTo(top);
+        sl.push(PathName()).set(Capture());
+      }
+
+      if (sl.includes(pathname)) {
+        const [x, y] = sl.position(pathname);
+
+        window.scrollTo(x, y);
+      }
 
       // unlocking only for this subpath
       sl.set_state(rem_mode_env.unlock);
@@ -59,7 +80,7 @@ function scrollTo(cob) { window.scrollTo(cob[0], cob[1]); }
  * 
  * value <- index -> index
  */
- function createSl() {
+function createSl() {
 
   // default to false
   const state = false;
@@ -81,14 +102,14 @@ function scrollTo(cob) { window.scrollTo(cob[0], cob[1]); }
     /**
      * Only get first key
      * 
-     * @param {*} s
+     * @param {string} s
      * 
      * @returns {*}
      */
     push: (s) => {
       index.push(s);
 
-      return { set: (v) => { value.push(v); } }
+      return { set(v) { value.push(v); } }
     },
 
     /**
@@ -102,8 +123,9 @@ function scrollTo(cob) { window.scrollTo(cob[0], cob[1]); }
     /**
      * @returns {[number, number]}
      */
-    to: (t) => {
-      return index.includes(t) ? value[index.indexOf(pathname)] : top;
+    position: (t) => {
+      // return index.includes(t) ? value[index.indexOf(pathname)] : top;
+      return value[index.indexOf(t)];
     },
     set_state(t) {
       this.state = t;
