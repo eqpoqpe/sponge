@@ -39,6 +39,7 @@ function createSponge() {
 
   return {
     to() {
+      scrollTo(sl.to(PathName()));
 
       // unlocking only for this subpath
       sl.set_state(rem_mode_env.unlock);
@@ -49,9 +50,7 @@ function createSponge() {
 /**
  * @param {Array} cob 
  */
-function scrollTo() {
-  return [0, 0];
-}
+function scrollTo(cob) { window.scrollTo(cob[0], cob[1]); }
 
 /**
  * shadow layer, Array of indexOf value's value's index
