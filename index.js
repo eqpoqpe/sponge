@@ -118,7 +118,7 @@ function createSl() {
      * @param {*} n
      */
     reset: (s, n) => { value[index.indexOf(s)] = n; },
-    get: () => ([index, value]),
+    get: () => [index, value],
 
     /**
      * @returns {[number, number]}
