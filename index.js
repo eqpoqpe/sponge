@@ -81,7 +81,8 @@ function scrollTo(cob) { window.scrollTo(cob[0], cob[1]); }
  * value <- index -> index
  */
 function createSl() {
-
+  
+  // saved in stack
   // default to false
   // state of unlock lock
   var state = false;
