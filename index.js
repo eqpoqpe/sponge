@@ -83,10 +83,13 @@ function scrollTo(cob) { window.scrollTo(cob[0], cob[1]); }
 function createSl() {
 
   // default to false
-  const state = false;
+  // state of unlock lock
+  var state = false;
+  var pathname = null;
+  
+  // private
   const index = [];
   const value = [];
-  const pathname = null;
 
   return {
 
