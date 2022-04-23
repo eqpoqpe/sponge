@@ -101,7 +101,7 @@ function createSl() {
      * 
      * @returns {boolean}
      */
-    includes: (sv) => { return index.includes(sv) },
+    includes(sv) { return index.includes(sv) },
 
     /**
      * Only get first key
@@ -110,7 +110,7 @@ function createSl() {
      * 
      * @returns {*}
      */
-    push: (s) => {
+    push(s) {
       index.push(s);
 
       return { set(v) { value.push(v); } }
@@ -121,13 +121,13 @@ function createSl() {
      * @param {*} s
      * @param {*} n
      */
-    reset: (s, n) => { value[index.indexOf(s)] = n; },
+    reset(s, n) { value[index.indexOf(s)] = n; },
     get: () => [index, value],
 
     /**
      * @returns {[number, number]}
      */
-    position: (t) => {
+    position(t) {
       // return index.includes(t) ? value[index.indexOf(pathname)] : top;
       return value[index.indexOf(t)];
     },
