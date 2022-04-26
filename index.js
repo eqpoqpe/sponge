@@ -1,7 +1,7 @@
 /**
  * index.js - sponge
  * 
- * Smart scroll with React Hooks|Router
+ * Smart scroll with React Hooks
  * 
  * Copyright 2022 Ryan Martin
  */
