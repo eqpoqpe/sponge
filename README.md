@@ -1,4 +1,5 @@
 # Sponge 🧽🤟🍔
+State lock programming.
 
 ## Examples with [React useEffect](https://reactjs.org/docs/hooks-effect.html)
 `App.js`
